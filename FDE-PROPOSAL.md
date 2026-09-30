@@ -41,7 +41,7 @@ The immediate priority is an Executive Intelligence experience for a focused gro
 - The ability to investigate performance without navigating multiple reports
 - Links to supporting evidence and existing reports where deeper detail is required
 
-To de-risk investment on both sides, Microsoft will deliver this initial experience as a focused, thin-sliced **Proof of Concept (POC)** over a 45-60 day sprint, funded as a non-billable Microsoft investment. The POC is intended to demonstrate tangible value quickly and give Comcast leadership the evidence needed to allocate funding for an ongoing, jointly resourced engagement. Assuming leadership is satisfied with the POC results, the engagement then proceeds into a funded MVP and, subsequently, a production deployment.
+To de-risk investment on both sides, Microsoft will deliver this initial experience as a focused, thin-sliced **Proof of Concept (POC)** over a 30-day sprint, funded as a non-billable Microsoft investment. The POC is intended to demonstrate tangible value quickly and give Comcast leadership the evidence needed to allocate funding for an ongoing, jointly resourced engagement. Assuming leadership is satisfied with the POC results, the engagement then proceeds into a funded MVP and, subsequently, a production deployment.
 
 This initial experience will establish the foundation for Comcast's broader Enterprise Decision Intelligence vision, including decision and data agents for business functions, forecasting, scenario modelling, competitive intelligence, and eventually recommended actions.
 
@@ -167,7 +167,7 @@ Moving data into Microsoft Fabric will not be treated as a prerequisite for init
 
 The first release will focus on a narrow, high-value executive experience rather than attempting to implement the complete Enterprise Decision Intelligence vision.
 
-This thin slice is the Phase 0 Proof of Concept: a 45-60 day, non-billable sprint covering a limited set of executives, priority metrics, business domains, and follow-up questions, designed to prove value quickly and support a leadership funding decision for the phases that follow.
+This thin slice is the Phase 0 Proof of Concept: a 30-day, non-billable sprint covering a limited set of executives, priority metrics, business domains, and follow-up questions, designed to prove value quickly and support a leadership funding decision for the phases that follow.
 
 ### 5. Production-minded engineering
 
@@ -261,13 +261,13 @@ The joint team will not commit to a fixed POC start date until the required data
 
 The engagement is structured in three stages: a short, non-billable Proof of Concept to prove value and unlock funding; a funded MVP to validate and harden the experience with real executive users; and production deployment and expansion once Comcast has committed to ongoing investment.
 
-## Phase 0: Proof of Concept (Non-Billable, 45-60 Days)
+## Phase 0: Proof of Concept (Non-Billable, 30 Days)
 
 **Objective:** Deliver a focused, thin-sliced version of the Executive Intelligence experience quickly, as a non-billable Microsoft investment, to demonstrate tangible business value and give Comcast leadership the evidence needed to fund an ongoing engagement.
 
 **Funding:** Delivered at Microsoft's expense. No commercial commitment from Comcast is required to start. Continued investment beyond the POC (MVP and production) depends on a leadership go/no-go decision informed by the POC results.
 
-**Duration:** 45-60 days, inclusive of mobilization, scoping, build, and a leadership readout.
+**Duration:** 30 days, inclusive of mobilization, scoping, build, and a leadership readout.
 
 **Activities:**
 
@@ -447,7 +447,7 @@ The discussions have established:
 - The need to investigate performance drivers without navigating traditional reports
 - A preference to reuse existing Comcast metrics, semantic models, and Teradata sources
 - Agreement that a major Fabric migration should not be required before demonstrating value
-- Agreement to start with a short, non-billable POC sprint (45-60 days) to demonstrate value before committing funding to the broader engagement
+- Agreement to start with a short, non-billable POC sprint (30 days) to demonstrate value before committing funding to the broader engagement
 - The need for active Comcast participation throughout the engagement, including the POC
 - The requirement to validate data access, environments, security, onboarding, legal, and funding readiness before committing to a final delivery plan for the funded phases
 

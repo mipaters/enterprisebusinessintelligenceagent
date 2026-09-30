@@ -61,6 +61,6 @@ Then open the printed local URL (typically http://localhost:5173).
 
 This mockup corresponds to **Workstream 3: Executive Intelligence** and the
 **Phase 0 Proof of Concept** described in [`FDE-PROPOSAL.md`](./FDE-PROPOSAL.md) —
-a short, non-billable, thin-slice sprint (45-60 days) intended to demonstrate
+a short, non-billable, thin-slice sprint (30 days) intended to demonstrate
 value quickly and support a Comcast leadership decision to fund the following
 MVP and production phases.

@@ -337,7 +337,7 @@ export const deploymentPhases = [
     id: 'phase0',
     label: 'Phase 0',
     name: 'Proof of Concept',
-    badge: 'Non-billable · 45-60 days',
+    badge: 'Non-billable · 30 days',
     objective:
       'Deliver a focused, thin-sliced version of the Executive Intelligence experience quickly, as a non-billable investment, to demonstrate tangible value and give leadership the evidence needed to fund an ongoing engagement.',
     highlights: [
@@ -436,7 +436,7 @@ export const walkthroughSteps = [
     id: 'delivery',
     title: 'From POC to Production',
     description:
-      'A short, non-billable proof of concept (45-60 days) demonstrates value first. A funded MVP and production deployment follow, based on results.',
+      'A short, non-billable proof of concept (30 days) demonstrates value first. A funded MVP and production deployment follow, based on results.',
     page: 'deployment',
   },
 ];
