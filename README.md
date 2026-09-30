@@ -43,6 +43,7 @@ Then open the printed local URL (typically http://localhost:5173).
 ## Relationship to the FDE proposal
 
 This mockup corresponds to **Workstream 3: Executive Intelligence** and the
-**Phase 1 thin slice** described in the Comcast FDE intake request — a narrow,
-high-value executive experience intended to validate the Enterprise Decision
-Intelligence vision before broader investment in data/agent workstreams.
+**Phase 0 Proof of Concept** described in [`FDE-PROPOSAL.md`](./FDE-PROPOSAL.md) —
+a short, non-billable, thin-slice sprint (45-60 days) intended to demonstrate
+value quickly and support a Comcast leadership decision to fund the following
+MVP and production phases.
