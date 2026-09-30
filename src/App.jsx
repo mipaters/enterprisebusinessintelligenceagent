@@ -1,13 +1,21 @@
 import { useMemo, useState } from 'react';
+import NavBar from './components/NavBar';
 import ExecutiveSelector from './components/ExecutiveSelector';
 import DailyBrief from './components/DailyBrief';
 import KpiGrid from './components/KpiGrid';
 import DriverAnalysis from './components/DriverAnalysis';
 import ChatPanel from './components/ChatPanel';
+import SolutionOverview from './components/SolutionOverview';
+import AgentTeam from './components/AgentTeam';
+import SolutionArchitecture from './components/SolutionArchitecture';
+import DeploymentPlan from './components/DeploymentPlan';
+import ExecutiveWalkthrough from './components/ExecutiveWalkthrough';
 import { executives, metrics, anomalies, dailyBrief } from './data/mockData';
 import './App.css';
 
 function App() {
+  const [activePage, setActivePage] = useState('brief');
+  const [walkthroughOpen, setWalkthroughOpen] = useState(false);
   const [selectedExecId, setSelectedExecId] = useState(executives[0].id);
   const [pendingQuestion, setPendingQuestion] = useState(null);
 
@@ -29,6 +37,7 @@ function App() {
   );
 
   const askAboutMetric = (metric) => {
+    setActivePage('brief');
     setPendingQuestion(`Tell me more about ${metric.name}`);
   };
 
@@ -42,29 +51,65 @@ function App() {
             <p className="muted">Enterprise Decision Intelligence · Proof-of-concept demo (mock data)</p>
           </div>
         </div>
-        <ExecutiveSelector
-          executives={executives}
-          selectedId={selectedExecId}
-          onSelect={setSelectedExecId}
-        />
+        {activePage === 'brief' && (
+          <ExecutiveSelector
+            executives={executives}
+            selectedId={selectedExecId}
+            onSelect={setSelectedExecId}
+          />
+        )}
       </header>
 
+      <NavBar
+        activePage={activePage}
+        onNavigate={setActivePage}
+        onOpenWalkthrough={() => setWalkthroughOpen(true)}
+      />
+
       <main className="app-main">
-        <div className="app-main-left">
-          <DailyBrief brief={dailyBrief} executiveName={selectedExec.name} />
-          <KpiGrid metrics={visibleMetrics} onAskAbout={askAboutMetric} />
-          <DriverAnalysis
-            anomalies={visibleAnomalies}
-            metricsById={metricsById}
-            onAskAbout={askAboutMetric}
-          />
-        </div>
-        <div className="app-main-right">
-          <ChatPanel
-            pendingQuestion={pendingQuestion}
-            onConsumePendingQuestion={() => setPendingQuestion(null)}
-          />
-        </div>
+        {activePage === 'brief' && (
+          <>
+            <div className="app-main-left">
+              <DailyBrief brief={dailyBrief} executiveName={selectedExec.name} />
+              <KpiGrid metrics={visibleMetrics} onAskAbout={askAboutMetric} />
+              <DriverAnalysis
+                anomalies={visibleAnomalies}
+                metricsById={metricsById}
+                onAskAbout={askAboutMetric}
+              />
+            </div>
+            <div className="app-main-right">
+              <ChatPanel
+                pendingQuestion={pendingQuestion}
+                onConsumePendingQuestion={() => setPendingQuestion(null)}
+              />
+            </div>
+          </>
+        )}
+
+        {activePage === 'overview' && (
+          <div className="app-main-full">
+            <SolutionOverview />
+          </div>
+        )}
+
+        {activePage === 'agents' && (
+          <div className="app-main-full">
+            <AgentTeam />
+          </div>
+        )}
+
+        {activePage === 'architecture' && (
+          <div className="app-main-full">
+            <SolutionArchitecture />
+          </div>
+        )}
+
+        {activePage === 'deployment' && (
+          <div className="app-main-full">
+            <DeploymentPlan />
+          </div>
+        )}
       </main>
 
       <footer className="app-footer">
@@ -73,6 +118,13 @@ function App() {
           Comcast systems.
         </p>
       </footer>
+
+      {walkthroughOpen && (
+        <ExecutiveWalkthrough
+          onClose={() => setWalkthroughOpen(false)}
+          onNavigate={(page) => setActivePage(page)}
+        />
+      )}
     </div>
   );
 }

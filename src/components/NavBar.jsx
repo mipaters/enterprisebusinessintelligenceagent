@@ -1,0 +1,29 @@
+const NAV_ITEMS = [
+  { id: 'brief', label: 'Executive Brief' },
+  { id: 'overview', label: 'Solution Overview' },
+  { id: 'agents', label: 'Agent Team' },
+  { id: 'architecture', label: 'Architecture' },
+  { id: 'deployment', label: 'Deployment Plan' },
+];
+
+export default function NavBar({ activePage, onNavigate, onOpenWalkthrough }) {
+  return (
+    <nav className="app-nav">
+      <div className="app-nav-tabs">
+        {NAV_ITEMS.map((item) => (
+          <button
+            key={item.id}
+            type="button"
+            className={activePage === item.id ? 'nav-tab nav-tab-active' : 'nav-tab'}
+            onClick={() => onNavigate(item.id)}
+          >
+            {item.label}
+          </button>
+        ))}
+      </div>
+      <button type="button" className="walkthrough-button" onClick={onOpenWalkthrough}>
+        ▶ Executive Demo Walkthrough
+      </button>
+    </nav>
+  );
+}
