@@ -196,6 +196,57 @@ export const dailyBrief = {
   recommendedFocus: "Recommend reviewing the Northeast retention offer and pricing response before next week's board update.",
 };
 
+export const executiveBriefs = {
+  'ceo-connectivity': {
+    ...dailyBrief,
+    headline:
+      'Broadband softness is the primary enterprise risk; mobile growth and stable margins provide a partial offset.',
+    narrative: [
+      'Good morning. Broadband net adds declined by 18.4K for a second consecutive week, concentrated in the Northeast. Video churn rose in parallel, pointing to competitive pressure among bundled households. The trend warrants leadership attention because it may affect customer relationships and future revenue.',
+      'Mobile line net adds remain strong at +318K quarter-to-date, while enterprise revenue grew 3.1%. Adjusted EBITDA margin is holding at 40.2%, and Customer NPS improved to +28. These results are positive offsets, but do not yet resolve the broadband retention risk.',
+      'Network reliability is slightly below target in two West Division markets, with known incidents under remediation. Contact-center handle time is also elevated during agent ramp-up for a new billing workflow; both are being actively managed.',
+    ],
+    recommendedFocus:
+      "Review the Northeast retention and pricing response, and confirm accountable owners and leading indicators before next week's board update.",
+  },
+  'evp-ebi': {
+    ...dailyBrief,
+    headline:
+      'The executive signal is clear across certified metrics: broadband and reliability need attention while mobile and NPS improve.',
+    narrative: [
+      'Good morning. The governed KPI view shows broadband net adds at -18.4K, down 12.3%, with the decline concentrated in the Northeast. Video churn is also elevated at 2.31%. These related measures tell a consistent customer-retention story and should be reviewed together rather than as isolated dashboard alerts.',
+      'Mobile line net adds are +318K quarter-to-date, up 9.4%, and Customer NPS is +28, up 4.2%. Enterprise revenue is up 3.1% and adjusted EBITDA margin remains stable at 40.2%, providing context for the broader performance narrative.',
+      'For follow-up, validate that the same certified definitions, periods, and segment cuts are used in the retention review. Network reliability is 99.982%, with two known West Division incidents; the contact-center handle-time increase is associated with the new billing workflow.',
+    ],
+    recommendedFocus:
+      'Bring the broadband, video churn, mobile, and NPS measures into one traceable retention view, with definitions, freshness, and supporting evidence visible to decision-makers.',
+  },
+  cfo: {
+    ...dailyBrief,
+    headline:
+      'Enterprise revenue growth and stable EBITDA margin are cushioning subscriber pressure; monitor the financial impact of retention actions.',
+    narrative: [
+      'Good morning. Enterprise revenue is $2.41B for the quarter, up 3.1%, and adjusted EBITDA margin is stable at 40.2%. Residential ARPU is $196.40, up 1.4%, while capital intensity remains at 11.8%. Together, these measures show solid revenue and margin resilience in the current period.',
+      'The key downside indicator is broadband net adds at -18.4K, down 12.3%, with video churn at 2.31%, up 6.8%. The concentration in the Northeast and reported competitor activity may put pressure on future subscriber revenue. Any retention or pricing response should be assessed against margin, customer lifetime value, and payback assumptions.',
+      'Mobile line net adds are +318K quarter-to-date, up 9.4%, helping diversify growth. Operational items in network reliability and contact-center handle time remain under active management and are not currently presented as material financial escalations.',
+    ],
+    recommendedFocus:
+      'Request a financially bounded comparison of Northeast retention options, including expected revenue protection, margin impact, payback, and downside assumptions.',
+  },
+  coo: {
+    ...dailyBrief,
+    headline:
+      'Known network incidents are being remediated, while contact-center handle time and Northeast subscriber losses merit operational follow-through.',
+    narrative: [
+      'Good morning. Network reliability is 99.982% over the trailing 30 days, with availability dips in two West Division markets tied to planned node maintenance in Sacramento and a fiber cut near Fresno. Both incidents are logged and remediation is in progress.',
+      'Call Center AHT is 6m 42s, up 5.5%. The new billing-dispute workflow is adding about 45 seconds per call as teams ramp up; training completion is expected to close the gap within two weeks. Track handle time alongside repeat contacts and customer outcomes to ensure the workflow change is not creating downstream friction.',
+      'Broadband net adds declined by 18.4K, with the largest pressure in the Northeast, and video churn rose to 2.31%. Mobile line net adds remain strong at +318K quarter-to-date. The customer and operational signals should be coordinated across regional teams without conflating correlation with proven causation.',
+    ],
+    recommendedFocus:
+      'Confirm incident recovery, billing-workflow training progress, and Northeast retention execution through named owners and near-term operating measures.',
+  },
+};
+
 export const feedPrompts = [
   'Why did broadband net adds decline this week?',
   'What is driving the increase in video churn?',

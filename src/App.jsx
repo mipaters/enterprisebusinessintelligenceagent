@@ -10,7 +10,7 @@ import AgentTeam from './components/AgentTeam';
 import SolutionArchitecture from './components/SolutionArchitecture';
 import DeploymentPlan from './components/DeploymentPlan';
 import ExecutiveWalkthrough from './components/ExecutiveWalkthrough';
-import { executives, metrics, anomalies, dailyBrief } from './data/mockData';
+import { executives, metrics, anomalies, dailyBrief, executiveBriefs } from './data/mockData';
 import './App.css';
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
   const [pendingQuestion, setPendingQuestion] = useState(null);
 
   const selectedExec = executives.find((exec) => exec.id === selectedExecId);
+  const selectedBrief = executiveBriefs[selectedExecId] ?? dailyBrief;
 
   const metricsById = useMemo(
     () => Object.fromEntries(metrics.map((metric) => [metric.id, metric])),
@@ -70,7 +71,7 @@ function App() {
         {activePage === 'brief' && (
           <>
             <div className="app-main-left">
-              <DailyBrief brief={dailyBrief} executiveName={selectedExec.name} />
+              <DailyBrief brief={selectedBrief} executiveName={selectedExec.name} />
               <KpiGrid metrics={visibleMetrics} onAskAbout={askAboutMetric} />
               <DriverAnalysis
                 anomalies={visibleAnomalies}
