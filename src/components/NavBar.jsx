@@ -1,3 +1,5 @@
+import { useOperator } from '../data/OperatorContext';
+
 const NAV_ITEMS = [
   { id: 'brief', label: 'Executive Brief' },
   { id: 'overview', label: 'Solution Overview' },
@@ -8,10 +10,15 @@ const NAV_ITEMS = [
 ];
 
 export default function NavBar({ activePage, onNavigate, onOpenWalkthrough }) {
+  const { operatorId } = useOperator();
+  const visibleNavItems = NAV_ITEMS.filter(
+    (item) => item.id !== 'deployment' || operatorId !== 'rogers'
+  );
+
   return (
     <nav className="app-nav">
       <div className="app-nav-tabs">
-        {NAV_ITEMS.map((item) => (
+        {visibleNavItems.map((item) => (
           <button
             key={item.id}
             type="button"
