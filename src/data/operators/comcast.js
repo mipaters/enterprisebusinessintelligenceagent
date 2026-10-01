@@ -15,6 +15,7 @@ export const comcastOperator = {
   name: 'Comcast',
   description: 'Connectivity, broadband, entertainment, and business services',
   sampleDataNotice: 'Illustrative Comcast demo scenario; all metrics and outcomes are synthetic.',
+  hasDeploymentPlan: true,
   defaultExecutiveId: executives[0].id,
   executives,
   metrics,

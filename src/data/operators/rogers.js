@@ -564,6 +564,7 @@ export const rogersOperator = {
   name: 'Rogers Communications',
   description: 'Wireless, internet, cable, media, business services, customer experience, and retail operations',
   sampleDataNotice: 'Synthetic illustrative demo values; not reported Rogers results and not connected to live systems.',
+  hasDeploymentPlan: false,
   defaultExecutiveId: 'rogers-ceo',
   executives,
   metrics,

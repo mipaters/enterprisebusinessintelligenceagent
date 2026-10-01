@@ -15,7 +15,7 @@ import { useOperator } from './data/OperatorContext';
 import OperatorProvider from './data/OperatorProvider';
 import './App.css';
 
-function OperatorSelector() {
+function OperatorSelector({ onSelectOperator }) {
   const { operatorId, setOperatorId, operators } = useOperator();
   return (
     <div className="operator-selector">
@@ -23,7 +23,10 @@ function OperatorSelector() {
       <select
         id="operator-select"
         value={operatorId}
-        onChange={(event) => setOperatorId(event.target.value)}
+        onChange={(event) => {
+          setOperatorId(event.target.value);
+          onSelectOperator(event.target.value);
+        }}
       >
         {operators.map((operator) => (
           <option key={operator.id} value={operator.id}>
@@ -36,7 +39,7 @@ function OperatorSelector() {
 }
 
 function ExecutiveCopilot() {
-  const { operator, theme, setTheme } = useOperator();
+  const { operator, operators, theme, setTheme } = useOperator();
   const [activePage, setActivePage] = useState('brief');
   const [walkthroughOpen, setWalkthroughOpen] = useState(false);
   const [executiveSelection, setExecutiveSelection] = useState({
@@ -72,6 +75,12 @@ function ExecutiveCopilot() {
       text: `Tell me more about ${metric.name}`,
     });
   };
+  const handleOperatorChange = (operatorId) => {
+    const nextOperator = operators.find((item) => item.id === operatorId);
+    if (!nextOperator?.hasDeploymentPlan) {
+      setActivePage('brief');
+    }
+  };
 
   return (
     <div className="app-shell" data-theme={theme}>
@@ -84,7 +93,7 @@ function ExecutiveCopilot() {
           </div>
         </div>
         <div className="app-header-controls">
-          <OperatorSelector />
+          <OperatorSelector onSelectOperator={handleOperatorChange} />
           {activePage === 'brief' && (
             <ExecutiveSelector
               executives={operator.executives}
@@ -161,7 +170,7 @@ function ExecutiveCopilot() {
           </div>
         )}
 
-        {activePage === 'deployment' && (
+        {activePage === 'deployment' && operator.hasDeploymentPlan && (
           <div className="app-main-full">
             <DeploymentPlan />
           </div>

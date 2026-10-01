@@ -1,8 +1,8 @@
 # Executive Copilot
 
 A front-end executive decision-intelligence demo that switches between Rogers
-Communications and Comcast operator experiences without a page reload. Rogers
-Communications is selected by default. The app starts in dark mode and includes
+Communications, Comcast, and Charter operator experiences without a page reload.
+Rogers Communications is selected by default. The app starts in dark mode and includes
 a header toggle for light mode.
 
 > All dashboard metrics, scenarios, recommendations, and outcomes in this demo
@@ -14,6 +14,10 @@ a header toggle for light mode.
 - **Operator Experience selector** — switches executive personas, role-filtered
   KPIs, briefings, anomalies, Q&A prompts and answers, strategic priorities,
   walkthrough scenarios, architecture sources, and outcome cards.
+- **Charter** — includes the requested executive personas, a synthetic broadband,
+  mobile, video, customer, commercial, advertising, network, and care dashboard,
+  plus Charter-focused briefings, recommendations, architecture sources, and
+  walkthrough scenarios. The FDE Deployment Plan is not available for Charter.
 - **Executive Brief** — daily executive narrative, role-focused metrics,
   anomaly/driver analysis, and operator-aware conversational Q&A.
 - **Solution Overview** — capabilities, value flow, operator executive personas,
@@ -42,7 +46,8 @@ Then open the printed local URL (typically http://localhost:5173).
 
 - `src/data/OperatorContext.jsx` — centralized app context, operator selection,
   and theme state.
-- `src/data/operators/rogers.js` and `src/data/operators/comcast.js` — operator
+- `src/data/operators/rogers.js`, `src/data/operators/comcast.js`, and
+  `src/data/operators/charter.js` — operator
   profiles, metrics, briefings, answer banks, priorities, architecture sources,
   walkthrough content, and outcome areas.
 - `src/data/mockData.js` — original Comcast demo data.

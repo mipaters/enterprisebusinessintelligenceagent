@@ -10,9 +10,9 @@ const NAV_ITEMS = [
 ];
 
 export default function NavBar({ activePage, onNavigate, onOpenWalkthrough }) {
-  const { operatorId } = useOperator();
+  const { operator } = useOperator();
   const visibleNavItems = NAV_ITEMS.filter(
-    (item) => item.id !== 'deployment' || operatorId !== 'rogers'
+    (item) => item.id !== 'deployment' || operator.hasDeploymentPlan
   );
 
   return (

@@ -2,10 +2,12 @@ import { useMemo, useState } from 'react';
 import { OperatorContext } from './OperatorContext';
 import { comcastOperator } from './operators/comcast';
 import { rogersOperator } from './operators/rogers';
+import { charterOperator } from './operators/charter';
 
 const operators = {
   rogers: rogersOperator,
   comcast: comcastOperator,
+  charter: charterOperator,
 };
 
 export default function OperatorProvider({ children }) {
@@ -39,6 +41,9 @@ export default function OperatorProvider({ children }) {
       strategicPriorities: operator.strategicPriorities,
       executiveWalkthroughs: operator.walkthroughSteps,
       marketInsights: operator.marketInsights,
+      businessOutcomes: operator.outcomes,
+      dataSources: operator.dataSources,
+      scenarioCards: operator.scenarioCards,
       theme,
       setTheme,
     }),
