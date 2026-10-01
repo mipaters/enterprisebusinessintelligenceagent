@@ -1,16 +1,19 @@
 import { capabilityTiles, todayVsFuture, valueFlowSteps, personas } from '../data/solutionContent';
+import { useOperator } from '../data/OperatorContext';
 
 export default function SolutionOverview() {
+  const { operator } = useOperator();
   return (
     <div className="solution-overview">
       <section className="card overview-hero">
-        <p className="eyebrow">What it does</p>
+        <p className="eyebrow">{operator.name} · What it does</p>
         <h2>Turn Trusted Enterprise Data into Decision-Ready Intelligence</h2>
         <p className="overview-lede">
-          The Enterprise Business Intelligence Agent transforms governed enterprise metrics, business
+          Executive Copilot transforms governed {operator.name} metrics, business
           context, and supporting evidence into concise executive insights, conversational analysis,
           decision scenarios, and reviewable recommendations.
         </p>
+        <p className="data-notice">{operator.sampleDataNotice}</p>
       </section>
 
       <section className="card">
@@ -42,7 +45,7 @@ export default function SolutionOverview() {
             </ul>
           </div>
           <div className="today-future-col future-col">
-            <h3>With Enterprise Business Intelligence Agent</h3>
+            <h3>With Executive Copilot</h3>
             <ul>
               {todayVsFuture.future.map((item) => (
                 <li key={item}>{item}</li>
@@ -63,7 +66,15 @@ export default function SolutionOverview() {
 
       <section className="card">
         <p className="eyebrow">Who it is for</p>
-        <h2>Built Around Executive and Business Roles</h2>
+        <h2>{operator.name} Executive and Business Roles</h2>
+        <div className="operator-executive-list">
+          {operator.executives.map((executive) => (
+            <div key={executive.id} className="operator-executive-card">
+              <strong>{executive.name}</strong>
+              <span>{executive.title}</span>
+            </div>
+          ))}
+        </div>
         <div className="persona-grid">
           {personas.map((persona) => (
             <div key={persona.id} className="persona-card">
@@ -75,6 +86,28 @@ export default function SolutionOverview() {
                 ))}
               </ul>
             </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="card">
+        <p className="eyebrow">Strategic priorities</p>
+        <h2>Operator-Specific Areas of Focus</h2>
+        <div className="operator-chip-list">
+          {operator.strategicPriorities.map((priority) => (
+            <span key={priority} className="operator-chip">{priority}</span>
+          ))}
+        </div>
+      </section>
+      <section className="card">
+        <p className="eyebrow">Market insights</p>
+        <h2>{operator.name} Industry and Operating Themes</h2>
+        <div className="outcome-grid">
+          {operator.marketInsights.map((insight) => (
+            <article className="outcome-card" key={insight.title}>
+              <h3>{insight.title}</h3>
+              <p>{insight.description}</p>
+            </article>
           ))}
         </div>
       </section>

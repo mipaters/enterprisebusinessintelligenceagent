@@ -9,56 +9,102 @@ import SolutionOverview from './components/SolutionOverview';
 import AgentTeam from './components/AgentTeam';
 import SolutionArchitecture from './components/SolutionArchitecture';
 import DeploymentPlan from './components/DeploymentPlan';
+import BusinessOutcomes from './components/BusinessOutcomes';
 import ExecutiveWalkthrough from './components/ExecutiveWalkthrough';
-import { executives, metrics, anomalies, dailyBrief, executiveBriefs } from './data/mockData';
+import { useOperator } from './data/OperatorContext';
+import OperatorProvider from './data/OperatorProvider';
 import './App.css';
 
-function App() {
+function OperatorSelector() {
+  const { operatorId, setOperatorId, operators } = useOperator();
+  return (
+    <div className="operator-selector">
+      <label htmlFor="operator-select">Operator Experience</label>
+      <select
+        id="operator-select"
+        value={operatorId}
+        onChange={(event) => setOperatorId(event.target.value)}
+      >
+        {operators.map((operator) => (
+          <option key={operator.id} value={operator.id}>
+            {operator.name}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+}
+
+function ExecutiveCopilot() {
+  const { operator, theme, setTheme } = useOperator();
   const [activePage, setActivePage] = useState('brief');
   const [walkthroughOpen, setWalkthroughOpen] = useState(false);
-  const [selectedExecId, setSelectedExecId] = useState(executives[0].id);
+  const [executiveSelection, setExecutiveSelection] = useState({
+    operatorId: operator.id,
+    executiveId: operator.defaultExecutiveId,
+  });
   const [pendingQuestion, setPendingQuestion] = useState(null);
 
-  const selectedExec = executives.find((exec) => exec.id === selectedExecId);
-  const selectedBrief = executiveBriefs[selectedExecId] ?? dailyBrief;
-
+  const selectedExecId =
+    executiveSelection.operatorId === operator.id
+      ? executiveSelection.executiveId
+      : operator.defaultExecutiveId;
+  const selectedExec =
+    operator.executives.find((exec) => exec.id === selectedExecId) ?? operator.executives[0];
+  const selectedBrief = operator.executiveBriefs[selectedExec.id] ?? operator.dailyBrief;
   const metricsById = useMemo(
-    () => Object.fromEntries(metrics.map((metric) => [metric.id, metric])),
-    []
+    () => Object.fromEntries(operator.metrics.map((metric) => [metric.id, metric])),
+    [operator]
   );
-
-  const visibleMetrics = useMemo(
-    () => selectedExec.focusMetrics.map((id) => metricsById[id]).filter(Boolean),
-    [selectedExec, metricsById]
+  const visibleMetrics = selectedExec.focusMetrics
+    .map((id) => metricsById[id])
+    .filter(Boolean);
+  const visibleAnomalies = operator.anomalies.filter((anomaly) =>
+    selectedExec.focusMetrics.includes(anomaly.metricId)
   );
-
-  const visibleAnomalies = useMemo(
-    () => anomalies.filter((anomaly) => selectedExec.focusMetrics.includes(anomaly.metricId)),
-    [selectedExec]
-  );
+  const currentPendingQuestion =
+    pendingQuestion?.operatorId === operator.id ? pendingQuestion.text : null;
 
   const askAboutMetric = (metric) => {
     setActivePage('brief');
-    setPendingQuestion(`Tell me more about ${metric.name}`);
+    setPendingQuestion({
+      operatorId: operator.id,
+      text: `Tell me more about ${metric.name}`,
+    });
   };
 
   return (
-    <div className="app-shell">
+    <div className="app-shell" data-theme={theme}>
       <header className="app-header">
         <div className="app-header-title">
-          <span className="app-logo">CI</span>
+          <span className="app-logo">EC</span>
           <div>
-            <h1>Comcast Executive Intelligence</h1>
-            <p className="muted">Enterprise Decision Intelligence · Proof-of-concept demo (mock data)</p>
+            <h1>Executive Copilot</h1>
+            <p className="muted">{operator.name} · Executive decision intelligence demo</p>
           </div>
         </div>
-        {activePage === 'brief' && (
-          <ExecutiveSelector
-            executives={executives}
-            selectedId={selectedExecId}
-            onSelect={setSelectedExecId}
-          />
-        )}
+        <div className="app-header-controls">
+          <OperatorSelector />
+          {activePage === 'brief' && (
+            <ExecutiveSelector
+              executives={operator.executives}
+              selectedId={selectedExec.id}
+              onSelect={(executiveId) =>
+                setExecutiveSelection({ operatorId: operator.id, executiveId })
+              }
+            />
+          )}
+          <button
+            type="button"
+            className="theme-toggle"
+            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+            aria-pressed={theme === 'dark'}
+          >
+            <span aria-hidden="true">{theme === 'dark' ? '☀' : '◐'}</span>
+            {theme === 'dark' ? 'Light mode' : 'Dark mode'}
+          </button>
+        </div>
       </header>
 
       <NavBar
@@ -67,12 +113,20 @@ function App() {
         onOpenWalkthrough={() => setWalkthroughOpen(true)}
       />
 
-      <main className="app-main">
+      <main key={operator.id} className="app-main operator-content">
         {activePage === 'brief' && (
           <>
             <div className="app-main-left">
-              <DailyBrief brief={selectedBrief} executiveName={selectedExec.name} />
-              <KpiGrid metrics={visibleMetrics} onAskAbout={askAboutMetric} />
+              <DailyBrief
+                brief={selectedBrief}
+                executiveName={selectedExec.name}
+                operatorName={operator.name}
+              />
+              <KpiGrid
+                metrics={visibleMetrics}
+                onAskAbout={askAboutMetric}
+                operatorName={operator.name}
+              />
               <DriverAnalysis
                 anomalies={visibleAnomalies}
                 metricsById={metricsById}
@@ -81,7 +135,8 @@ function App() {
             </div>
             <div className="app-main-right">
               <ChatPanel
-                pendingQuestion={pendingQuestion}
+                key={operator.id}
+                pendingQuestion={currentPendingQuestion}
                 onConsumePendingQuestion={() => setPendingQuestion(null)}
               />
             </div>
@@ -111,17 +166,21 @@ function App() {
             <DeploymentPlan />
           </div>
         )}
+
+        {activePage === 'outcomes' && (
+          <div className="app-main-full">
+            <BusinessOutcomes />
+          </div>
+        )}
       </main>
 
       <footer className="app-footer">
-        <p>
-          Demo mockup only — all metrics, names, and narratives are illustrative. Not connected to live
-          Comcast systems.
-        </p>
+        <p>{operator.sampleDataNotice}</p>
       </footer>
 
       {walkthroughOpen && (
         <ExecutiveWalkthrough
+          key={operator.id}
           onClose={() => setWalkthroughOpen(false)}
           onNavigate={(page) => setActivePage(page)}
         />
@@ -130,4 +189,10 @@ function App() {
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <OperatorProvider>
+      <ExecutiveCopilot />
+    </OperatorProvider>
+  );
+}

@@ -1,38 +1,33 @@
-# Comcast Executive Intelligence — Demo Mockup
+# Executive Copilot
 
-A front-end mockup of the **Executive Intelligence** experience described in the Comcast
-Enterprise Decision Intelligence FDE engagement proposal. This demo shows what a daily
-executive brief, role-filtered KPI view, driver/anomaly analysis, and conversational
-Q&A over trusted enterprise metrics could look like — using **mock data only**.
+A front-end executive decision-intelligence demo that switches between Rogers
+Communications and Comcast operator experiences without a page reload. Rogers
+Communications is selected by default. The app starts in dark mode and includes
+a header toggle for light mode.
 
-> This is a UX/concept mockup for demonstration purposes. It is not connected to any
-> live Comcast data source, semantic model, or Microsoft 365 Copilot. No real
-> Comcast performance data is used.
+> All dashboard metrics, scenarios, recommendations, and outcomes in this demo
+> are synthetic and illustrative. The app is not connected to live operator
+> systems and does not represent reported company results.
 
 ## What it demonstrates
 
-The demo has five sections, reachable from the top navigation bar:
-
-- **Executive Brief** — the original working demo: an AI-generated daily narrative,
-  a role-filtered KPI view (switch executives via the dropdown), anomaly/driver
-  analysis with source citations, and a conversational Q&A chat panel with a
-  canned "answer bank," source traceability, and thumbs up/down feedback.
-- **Solution Overview** — answers "what does it do, why is it needed, who is it
-  for" with six capability tiles, a Today-vs-Future comparison and value-flow
-  diagram, and role-based persona cards (CEO, CFO, COO, CCO, EBI teams, and
-  business/functional leaders).
-- **Agent Team** — the underlying specialist agents (orchestration, semantic
-  grounding, narrative briefing, conversational Q&A, driver analysis, scenario
-  modeling, recommendation, and governance/audit) and what each one owns.
-- **Architecture** — an interactive, clickable layered view of the proposed
-  Microsoft solution architecture (data/semantic sources, agent orchestration,
-  governance/identity/security, experience channels, and observability).
-- **Deployment Plan** — the phased FDE delivery plan (non-billable POC → funded
-  MVP → production → enterprise scale), summarized from `FDE-PROPOSAL.md`.
-
-A persistent **▶ Executive Demo Walkthrough** button (top right of the nav bar)
-opens a full-screen, tile-based guided tour that links each step of the demo
-storyline to the relevant page.
+- **Operator Experience selector** — switches executive personas, role-filtered
+  KPIs, briefings, anomalies, Q&A prompts and answers, strategic priorities,
+  walkthrough scenarios, architecture sources, and outcome cards.
+- **Executive Brief** — daily executive narrative, role-focused metrics,
+  anomaly/driver analysis, and operator-aware conversational Q&A.
+- **Solution Overview** — capabilities, value flow, operator executive personas,
+  and strategic priorities.
+- **Agent Team** — specialist roles with active operator context and priorities.
+- **Architecture** — clickable platform layers and operator-specific source
+  systems.
+- **Business Outcomes** — operator-specific illustrative outcomes and use cases.
+- **Executive Demo Walkthrough** — full-screen tile tour with Rogers-specific
+  household growth, wireless churn, mobile attach, retail, business services,
+  and executive briefing scenarios; Comcast has its own tour.
+- **Deployment Plan** — the phased FDE plan, starting with the 30-day
+  non-billable POC.
+- **Theme toggle** — dark by default, with light mode available in the header.
 
 ## Running the demo
 
@@ -45,22 +40,20 @@ Then open the printed local URL (typically http://localhost:5173).
 
 ## Project structure
 
-- `src/data/mockData.js` — mock executives, metrics, anomalies, brief narrative,
-  and the chat "answer bank" used by the Executive Brief page.
-- `src/data/solutionContent.js` — content for the Solution Overview, Agent Team,
-  Architecture, and Deployment Plan pages, plus the walkthrough script.
-- `src/components/` — `NavBar`, `ExecutiveWalkthrough`, the Executive Brief
-  components (`DailyBrief`, `KpiGrid`/`KpiCard`, `DriverAnalysis`, `ChatPanel`,
-  `ExecutiveSelector`, `Sparkline`), and the solution pages (`SolutionOverview`,
-  `AgentTeam`, `SolutionArchitecture`, `DeploymentPlan`).
-- `src/App.jsx` — top-level navigation state, walkthrough overlay, and the
-  Executive Brief state wiring (selected executive, chat hand-off from
-  "Ask about this metric" / "Investigate further" links).
+- `src/data/OperatorContext.jsx` — centralized app context, operator selection,
+  and theme state.
+- `src/data/operators/rogers.js` and `src/data/operators/comcast.js` — operator
+  profiles, metrics, briefings, answer banks, priorities, architecture sources,
+  walkthrough content, and outcome areas.
+- `src/data/mockData.js` — original Comcast demo data.
+- `src/data/solutionContent.js` — reusable capabilities, agent roles, and
+  deployment phases.
+- `src/components/` — dashboard and operator-aware experience pages.
+- `src/App.jsx` — global selectors, navigation, and page wiring.
 
 ## Relationship to the FDE proposal
 
-This mockup corresponds to **Workstream 3: Executive Intelligence** and the
-**Phase 0 Proof of Concept** described in [`FDE-PROPOSAL.md`](./FDE-PROPOSAL.md) —
-a short, non-billable, thin-slice sprint (30 days) intended to demonstrate
-value quickly and support a Comcast leadership decision to fund the following
-MVP and production phases.
+The deployment page summarizes the phased plan in
+[`FDE-PROPOSAL.md`](./FDE-PROPOSAL.md): a focused, 30-day, non-billable POC,
+followed by funded MVP and production phases if leadership is satisfied with
+the results.

@@ -3,6 +3,7 @@ const NAV_ITEMS = [
   { id: 'overview', label: 'Solution Overview' },
   { id: 'agents', label: 'Agent Team' },
   { id: 'architecture', label: 'Architecture' },
+  { id: 'outcomes', label: 'Business Outcomes' },
   { id: 'deployment', label: 'Deployment Plan' },
 ];
 

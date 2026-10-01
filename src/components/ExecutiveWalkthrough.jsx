@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { walkthroughSteps } from '../data/solutionContent';
+import { useOperator } from '../data/OperatorContext';
 
 export default function ExecutiveWalkthrough({ onClose, onNavigate }) {
+  const { operator } = useOperator();
+  const walkthroughSteps = operator.walkthroughSteps;
   const [activeStepId, setActiveStepId] = useState(null);
   const activeStep = walkthroughSteps.find((step) => step.id === activeStepId);
 
@@ -16,8 +18,8 @@ export default function ExecutiveWalkthrough({ onClose, onNavigate }) {
     <div className="walkthrough-overlay" role="dialog" aria-modal="true">
       <div className="walkthrough-header">
         <div>
-          <p className="eyebrow">Executive demo walkthrough</p>
-          <h2>Guided Tour of the Enterprise Business Intelligence Agent</h2>
+          <p className="eyebrow">{operator.name} · Executive demo walkthrough</p>
+          <h2>Guided Tour of Executive Copilot</h2>
         </div>
         <button type="button" className="walkthrough-close" onClick={onClose} aria-label="Close walkthrough">
           ✕

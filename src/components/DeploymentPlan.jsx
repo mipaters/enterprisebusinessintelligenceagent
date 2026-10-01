@@ -1,10 +1,12 @@
 import { deploymentPhases } from '../data/solutionContent';
+import { useOperator } from '../data/OperatorContext';
 
 export default function DeploymentPlan() {
+  const { operator } = useOperator();
   return (
     <div className="deployment-page">
       <section className="card">
-        <p className="eyebrow">FDE deployment plan</p>
+        <p className="eyebrow">{operator.name} · FDE deployment plan</p>
         <h2>From Proof of Concept to Enterprise Scale</h2>
         <p className="overview-lede">
           The engagement starts with a short, non-billable proof of concept to prove value quickly, then

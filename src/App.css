@@ -52,6 +52,52 @@
   color: #d7deea;
 }
 
+.app-header-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.operator-selector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #d7deea;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.operator-selector select {
+  max-width: 240px;
+  padding: 7px 10px;
+  border: 1px solid #2b4a75;
+  border-radius: 6px;
+  background: #102a4c;
+  color: #fff;
+  font-size: 13px;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #49617f;
+  border-radius: 999px;
+  padding: 7px 12px;
+  background: #102a4c;
+  color: #fff;
+  font: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  background: #1a3b65;
+}
+
 .executive-selector select {
   padding: 6px 10px;
   border-radius: 6px;
@@ -556,6 +602,339 @@
 
 .app-main-full {
   grid-column: 1 / -1;
+}
+
+.operator-content {
+  animation: operator-content-enter 260ms ease-out;
+}
+
+@keyframes operator-content-enter {
+  from { opacity: 0.45; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.data-notice {
+  display: inline-block;
+  margin: 12px 0 0;
+  padding: 7px 10px;
+  border: 1px solid #d8e3f5;
+  border-radius: 7px;
+  background: #f2f6fc;
+  color: #42536d;
+  font-size: 12px;
+}
+
+.operator-focus-panel {
+  margin-top: 16px;
+}
+
+.operator-focus-panel h3,
+.operator-source-list h3 {
+  margin: 0 0 9px;
+  font-size: 14px;
+}
+
+.operator-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.operator-chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #d9e2f0;
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: #f5f8fd;
+  color: #30435e;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.agent-context-list {
+  margin: 14px 0 0;
+  padding-left: 20px;
+  color: #374151;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.operator-executive-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.operator-executive-card {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 11px 13px;
+  border: 1px solid #e3e6ec;
+  border-radius: 8px;
+  background: #fbfcfe;
+  font-size: 12px;
+}
+
+.operator-executive-card strong {
+  color: #12172b;
+  font-size: 13px;
+}
+
+.operator-executive-card span {
+  color: #596579;
+}
+
+.operator-source-list {
+  margin-top: 18px;
+  padding-top: 15px;
+  border-top: 1px solid #e3e6ec;
+}
+
+.outcomes-page {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.outcome-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
+  gap: 14px;
+}
+
+.outcome-card {
+  padding: 16px;
+  border: 1px solid #e3e6ec;
+  border-radius: 10px;
+  background: #fbfcfe;
+}
+
+.outcome-card h3 {
+  margin: 0 0 7px;
+  color: #12172b;
+  font-size: 15px;
+}
+
+.outcome-card p {
+  margin: 0;
+  color: #4b5563;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+/* Operator switch and theme-aware surface */
+.app-shell[data-theme='dark'] {
+  background: #0f1724;
+  color: #e6edf6;
+}
+
+.app-shell[data-theme='dark'] .app-main {
+  background: #0f1724;
+}
+
+.app-shell[data-theme='dark'] .card,
+.app-shell[data-theme='dark'] .capability-tile,
+.app-shell[data-theme='dark'] .persona-card,
+.app-shell[data-theme='dark'] .agent-card,
+.app-shell[data-theme='dark'] .architecture-layer,
+.app-shell[data-theme='dark'] .deployment-phase-card,
+.app-shell[data-theme='dark'] .outcome-card,
+.app-shell[data-theme='dark'] .operator-executive-card,
+.app-shell[data-theme='dark'] .kpi-card,
+.app-shell[data-theme='dark'] .anomaly-item {
+  background: #172235;
+  border-color: #2b3b52;
+  color: #e6edf6;
+}
+
+.app-shell[data-theme='dark'] .app-nav {
+  background: #131e2e;
+  border-color: #2b3b52;
+}
+
+.app-shell[data-theme='dark'] .nav-tab {
+  color: #c1cede;
+}
+
+.app-shell[data-theme='dark'] .nav-tab:hover {
+  background: #202e43;
+}
+
+.app-shell[data-theme='dark'] .nav-tab-active {
+  background: #183861;
+  color: #9bc2ff;
+}
+
+.app-shell[data-theme='dark'] h2,
+.app-shell[data-theme='dark'] h3,
+.app-shell[data-theme='dark'] .capability-tile h3,
+.app-shell[data-theme='dark'] .persona-card h3,
+.app-shell[data-theme='dark'] .agent-card h3,
+.app-shell[data-theme='dark'] .architecture-layer-name,
+.app-shell[data-theme='dark'] .deployment-phase-header h3,
+.app-shell[data-theme='dark'] .operator-executive-card strong,
+.app-shell[data-theme='dark'] .outcome-card h3 {
+  color: #eef4fc;
+}
+
+.app-shell[data-theme='dark'] p,
+.app-shell[data-theme='dark'] li,
+.app-shell[data-theme='dark'] .capability-tile ul,
+.app-shell[data-theme='dark'] .persona-card ul,
+.app-shell[data-theme='dark'] .agent-card ul,
+.app-shell[data-theme='dark'] .deployment-phase-card ul,
+.app-shell[data-theme='dark'] .brief-paragraph,
+.app-shell[data-theme='dark'] .agent-context-list,
+.app-shell[data-theme='dark'] .outcome-card p {
+  color: #c1cede;
+}
+
+.app-shell[data-theme='dark'] .brief-headline,
+.app-shell[data-theme='dark'] .kpi-name,
+.app-shell[data-theme='dark'] .kpi-value,
+.app-shell[data-theme='dark'] .anomaly-item-header h3 {
+  color: #eef4fc;
+}
+
+.app-shell[data-theme='dark'] .kpi-domain,
+.app-shell[data-theme='dark'] .kpi-unit,
+.app-shell[data-theme='dark'] .kpi-source {
+  color: #9eacc0;
+}
+
+.app-shell[data-theme='dark'] .anomaly-item.severity-high {
+  background: #3b2529;
+}
+
+.app-shell[data-theme='dark'] .anomaly-item.severity-medium {
+  background: #3a3020;
+}
+
+.app-shell[data-theme='dark'] .anomaly-item.severity-low {
+  background: #202e43;
+}
+
+.app-shell[data-theme='dark'] .brief-focus {
+  background: #3a3020;
+  border-color: #62502b;
+  color: #f3dca6;
+}
+
+.app-shell[data-theme='dark'] .badge-brief {
+  background: #183861;
+  color: #b9d5ff;
+}
+
+.app-shell[data-theme='dark'] .muted,
+.app-shell[data-theme='dark'] .persona-needs-label,
+.app-shell[data-theme='dark'] .agent-role,
+.app-shell[data-theme='dark'] .architecture-layer-summary,
+.app-shell[data-theme='dark'] .operator-executive-card span {
+  color: #9eacc0;
+}
+
+.app-shell[data-theme='dark'] .today-col {
+  background: #202a38;
+  border-color: #39485c;
+  color: #d0d7e2;
+}
+
+.app-shell[data-theme='dark'] .future-col {
+  background: #172b46;
+  border-color: #31517a;
+  color: #dce9fb;
+}
+
+.app-shell[data-theme='dark'] .today-future-col h3,
+.app-shell[data-theme='dark'] .today-future-col li {
+  color: inherit;
+}
+
+.app-shell[data-theme='dark'] .operator-chip,
+.app-shell[data-theme='dark'] .data-notice {
+  background: #202e43;
+  border-color: #3a506c;
+  color: #d2dfef;
+}
+
+.app-shell[data-theme='dark'] .operator-source-list {
+  border-color: #2b3b52;
+}
+
+.app-shell[data-theme='dark'] .architecture-layer-active {
+  background: #183861;
+  border-color: #4b86d9;
+}
+
+.app-shell[data-theme='dark'] .chat-messages,
+.app-shell[data-theme='dark'] .chat-input-row input,
+.app-shell[data-theme='dark'] .chat-suggestions .suggestion-chip {
+  background: #111b2a;
+  border-color: #30425a;
+  color: #e6edf6;
+}
+
+.app-shell[data-theme='dark'] .chat-message-assistant {
+  background: #1b2e49;
+  color: #e0eaf8;
+}
+
+.app-shell[data-theme='dark'] .chat-message-user {
+  background: #1f6feb;
+  color: #fff;
+}
+
+.app-shell[data-theme='dark'] .chat-sources,
+.app-shell[data-theme='dark'] .chat-feedback {
+  color: #aab9ce;
+}
+
+.app-shell[data-theme='dark'] .recommendation-list {
+  margin: 0;
+  padding-left: 20px;
+  color: #c1cede;
+  line-height: 1.7;
+}
+
+.app-shell[data-theme='dark'] .app-footer {
+  color: #94a3b8;
+}
+
+.app-shell[data-theme='light'] {
+  background: #f3f4f6;
+  color: #1f2430;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .operator-content {
+    animation: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .app-header-controls {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .operator-selector {
+    flex-wrap: wrap;
+  }
+
+  .operator-selector select {
+    max-width: 100%;
+  }
+}
+
+.recommendation-list {
+  margin: 0;
+  padding-left: 20px;
+  color: #374151;
+  line-height: 1.7;
 }
 
 /* Shared solution-page elements */

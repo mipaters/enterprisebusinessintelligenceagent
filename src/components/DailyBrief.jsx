@@ -1,9 +1,9 @@
-export default function DailyBrief({ brief, executiveName }) {
+export default function DailyBrief({ brief, executiveName, operatorName }) {
   return (
     <section className="card daily-brief">
       <div className="daily-brief-header">
         <div>
-          <h2>Daily Executive Brief</h2>
+          <h2>{operatorName} Daily Executive Brief</h2>
           <p className="muted">
             {brief.date} · Generated {brief.generatedAt} · Prepared for {executiveName}
           </p>

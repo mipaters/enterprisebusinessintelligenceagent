@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { qaBank, defaultAnswer, feedPrompts } from '../data/mockData';
+import { useOperator } from '../data/OperatorContext';
 
-function findAnswer(question) {
+function findAnswer(question, operator) {
   const normalized = question.toLowerCase();
-  const match = qaBank.find((entry) =>
+  const match = operator.qaBank.find((entry) =>
     entry.keywords.some((keyword) => normalized.includes(keyword))
   );
-  return match ?? defaultAnswer;
+  return match ?? operator.defaultAnswer;
 }
 
 let messageId = 0;
@@ -16,11 +16,12 @@ function nextId() {
 }
 
 export default function ChatPanel({ pendingQuestion, onConsumePendingQuestion }) {
+  const { operator } = useOperator();
   const [messages, setMessages] = useState([
     {
       id: nextId(),
       role: 'assistant',
-      text: "Ask me about any enterprise metric, anomaly, or business driver — I'll answer using Comcast's trusted metrics and semantic definitions, with sources.",
+      text: `Ask me about ${operator.name} metrics, opportunities, or business drivers. This demo uses synthetic data and operator-specific answer examples.`,
       sources: [],
     },
   ]);
@@ -33,7 +34,7 @@ export default function ChatPanel({ pendingQuestion, onConsumePendingQuestion })
     if (!trimmed) return;
 
     const userMessage = { id: nextId(), role: 'user', text: trimmed };
-    const { answer, sources } = findAnswer(trimmed);
+    const { answer, sources } = findAnswer(trimmed, operator);
     const assistantMessage = {
       id: nextId(),
       role: 'assistant',
@@ -71,8 +72,8 @@ export default function ChatPanel({ pendingQuestion, onConsumePendingQuestion })
   return (
     <section className="card chat-panel">
       <div className="section-header">
-        <h2>Ask Enterprise Intelligence</h2>
-        <p className="muted">Conversational access to trusted enterprise metrics via Microsoft 365 Copilot</p>
+        <h2>Ask Executive Copilot</h2>
+        <p className="muted">Conversational access to {operator.name} demo metrics and business context</p>
       </div>
 
       <div className="chat-messages" ref={scrollRef}>
@@ -112,7 +113,7 @@ export default function ChatPanel({ pendingQuestion, onConsumePendingQuestion })
       </div>
 
       <div className="chat-suggestions">
-        {feedPrompts.map((prompt) => (
+        {operator.feedPrompts.map((prompt) => (
           <button key={prompt} type="button" className="suggestion-chip" onClick={() => sendQuestion(prompt)}>
             {prompt}
           </button>
