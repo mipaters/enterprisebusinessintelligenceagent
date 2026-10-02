@@ -304,6 +304,51 @@ const feedPrompts = [
   'What should I focus on today?',
 ];
 
+const executivePrompts = {
+  'rogers-ceo': [
+    'What are the biggest enterprise growth opportunities?',
+    'Where are household relationships underdeveloped?',
+    'Which cross-functional risks need executive attention?',
+    'What outcomes should I review this week?',
+  ],
+  'rogers-cfo': [
+    'How are revenue growth and wireless ARPU trending?',
+    'What is the modeled payback for household attach?',
+    'Which retention options protect contribution after offer cost?',
+    'How is SMB growth affecting the outlook?',
+  ],
+  'rogers-wireless': [
+    'What is driving wireless subscriber growth?',
+    'Which wireless customer cohorts show validated churn risk?',
+    'Where can mobile attach improve among eligible households?',
+    'How are ARPU and retention moving together?',
+  ],
+  'rogers-enterprise': [
+    'Which SMB accounts have serviceable cross-sell opportunities?',
+    'What is driving business services growth?',
+    'Where should sales teams prioritize qualified pipeline?',
+    'How are network performance trends affecting business customers?',
+  ],
+  'rogers-technology': [
+    'Where are the most important network performance exceptions?',
+    'Which technology initiatives can improve customer outcomes?',
+    'What data sources are needed to validate the AI opportunity?',
+    'How should we monitor reliability and service impact?',
+  ],
+  'rogers-cio': [
+    'Which AI use case is ready from a data and integration perspective?',
+    'Where do identity, access, or data-quality controls need attention?',
+    'How should we measure AI adoption and operational impact?',
+    'What observability is needed before scaling this workload?',
+  ],
+  'rogers-digital': [
+    'Which digital journeys have the greatest customer friction?',
+    'How is contact-center automation affecting resolution quality?',
+    'Where can a relevant digital offer improve mobile attach?',
+    'What customer signals should trigger human assistance?',
+  ],
+};
+
 const qaBank = [
   {
     keywords: ['household', 'penetration', 'attach', 'internet only', 'wireless only'],
@@ -572,6 +617,7 @@ export const rogersOperator = {
   dailyBrief,
   executiveBriefs,
   feedPrompts,
+  executivePrompts,
   qaBank,
   defaultAnswer: {
     answer: 'This is a synthetic Rogers operator demo. A production experience would ground responses in authorized, governed operator data and cite evidence; no live Rogers systems are connected here.',

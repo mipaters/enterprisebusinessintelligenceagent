@@ -308,6 +308,45 @@ const feedPrompts = [
   'What should I focus on today?',
 ];
 
+const executivePrompts = {
+  'charter-ceo': [
+    'What are the enterprise growth and customer risks?',
+    'Where can we deepen household relationships?',
+    'Which cross-functional priorities need leadership alignment?',
+    'What outcomes should we track across connectivity and commercial?',
+  ],
+  'charter-cfo': [
+    'How are ARPU and commercial growth trending?',
+    'What are the economics of mobile attach and retention?',
+    'How is care efficiency changing after customer impact?',
+    'What assumptions support the advertising opportunity estimate?',
+  ],
+  'charter-coo': [
+    'Where are network availability exceptions affecting customers?',
+    'How are digital care resolution and repeat contacts trending?',
+    'Which operating issues are contributing to retention risk?',
+    'Where can we improve care efficiency without hurting service quality?',
+  ],
+  'charter-product-technology': [
+    'Where can internet and mobile products work better together?',
+    'What is changing in video engagement by segment?',
+    'Which product journey should we test next?',
+    'How are serviceability and network quality affecting product opportunities?',
+  ],
+  'charter-ctio': [
+    'Which AI use case is ready from a data and integration perspective?',
+    'Where do identity, data quality, or platform controls need attention?',
+    'What observability is needed before scaling digital care?',
+    'How should we measure technology reliability and customer impact?',
+  ],
+  'charter-commercial': [
+    'Which SMB opportunities are qualified and serviceable?',
+    'What is driving the mobile attach opportunity?',
+    'How are advertising signals aligned with campaign inventory?',
+    'Which commercial opportunities have the strongest evidence for growth?',
+  ],
+};
+
 const qaBank = [
   {
     keywords: ['household', 'attach', 'mobile'],
@@ -591,6 +630,7 @@ export const charterOperator = {
   dailyBrief,
   executiveBriefs,
   feedPrompts,
+  executivePrompts,
   qaBank,
   defaultAnswer: {
     answer: 'This is a synthetic Charter operator demo. A production experience would ground answers in authorized, governed operator data and cite its evidence; no live Charter systems are connected here.',

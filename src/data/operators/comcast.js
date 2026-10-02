@@ -23,6 +23,32 @@ export const comcastOperator = {
   dailyBrief,
   executiveBriefs,
   feedPrompts,
+  executivePrompts: {
+    'ceo-connectivity': [
+      'What are the biggest enterprise risks and opportunities?',
+      'How are broadband, mobile, and enterprise services trending?',
+      'Which customer or market changes need executive attention?',
+      'What decisions should I prioritize today?',
+    ],
+    'evp-ebi': [
+      'Which metrics changed materially and what evidence supports the signal?',
+      'Are the metric definitions and source data current and consistent?',
+      'Where are there coverage or data-quality gaps?',
+      'Which insight needs deeper driver analysis?',
+    ],
+    cfo: [
+      'How are revenue and adjusted EBITDA margin trending?',
+      'What is the financial impact of broadband churn?',
+      'How do retention options compare on margin and payback?',
+      'What changed in ARPU and capital intensity?',
+    ],
+    coo: [
+      'Where are network reliability issues affecting customers?',
+      'What is driving contact-center handle time?',
+      'Which operating issues need escalation today?',
+      'How are service changes affecting churn and customer experience?',
+    ],
+  },
   qaBank,
   defaultAnswer,
   strategicPriorities: [

@@ -146,6 +146,7 @@ function ExecutiveCopilot() {
               <ChatPanel
                 key={operator.id}
                 pendingQuestion={currentPendingQuestion}
+                executiveId={selectedExec.id}
                 onConsumePendingQuestion={() => setPendingQuestion(null)}
               />
             </div>

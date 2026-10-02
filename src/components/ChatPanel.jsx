@@ -15,8 +15,14 @@ function nextId() {
   return messageId;
 }
 
-export default function ChatPanel({ pendingQuestion, onConsumePendingQuestion }) {
+export default function ChatPanel({
+  pendingQuestion,
+  onConsumePendingQuestion,
+  executiveId,
+}) {
   const { operator } = useOperator();
+  const suggestedPrompts =
+    operator.executivePrompts?.[executiveId] ?? operator.feedPrompts;
   const [messages, setMessages] = useState([
     {
       id: nextId(),
@@ -113,7 +119,7 @@ export default function ChatPanel({ pendingQuestion, onConsumePendingQuestion })
       </div>
 
       <div className="chat-suggestions">
-        {operator.feedPrompts.map((prompt) => (
+        {suggestedPrompts.map((prompt) => (
           <button key={prompt} type="button" className="suggestion-chip" onClick={() => sendQuestion(prompt)}>
             {prompt}
           </button>
