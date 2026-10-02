@@ -114,6 +114,11 @@ export const comcastOperator = {
     'Customer platforms',
     'Service operations',
   ],
+  compassDimensions: {
+    region: { label: 'Region', options: ['Northeast', 'Central', 'West', 'South'] },
+    market: { label: 'Market', options: ['Boston', 'Chicago', 'Denver', 'Atlanta', 'Seattle'] },
+    channel: { label: 'Channel', options: ['Digital', 'Retail', 'Care'] },
+  },
   outcomes: [
     {
       title: 'Broadband Growth',

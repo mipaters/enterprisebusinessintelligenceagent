@@ -3,6 +3,7 @@ import NavBar from './components/NavBar';
 import ExecutiveSelector from './components/ExecutiveSelector';
 import DailyBrief from './components/DailyBrief';
 import KpiGrid from './components/KpiGrid';
+import KpiCompass from './components/KpiCompass';
 import DriverAnalysis from './components/DriverAnalysis';
 import ChatPanel from './components/ChatPanel';
 import SolutionOverview from './components/SolutionOverview';
@@ -47,6 +48,7 @@ function ExecutiveCopilot() {
     executiveId: operator.defaultExecutiveId,
   });
   const [pendingQuestion, setPendingQuestion] = useState(null);
+  const [compassMetric, setCompassMetric] = useState(null);
 
   const selectedExecId =
     executiveSelection.operatorId === operator.id
@@ -75,8 +77,16 @@ function ExecutiveCopilot() {
       text: `Tell me more about ${metric.name}`,
     });
   };
+  const askAboutCompassMetric = (metric) => {
+    setActivePage('brief');
+    setPendingQuestion({
+      operatorId: operator.id,
+      text: `Tell me more about ${metric.name}`,
+    });
+  };
   const handleOperatorChange = (operatorId) => {
     const nextOperator = operators.find((item) => item.id === operatorId);
+    setCompassMetric(null);
     if (!nextOperator?.hasDeploymentPlan) {
       setActivePage('brief');
     }
@@ -134,6 +144,7 @@ function ExecutiveCopilot() {
               <KpiGrid
                 metrics={visibleMetrics}
                 onAskAbout={askAboutMetric}
+                onDrillDown={setCompassMetric}
                 operatorName={operator.name}
               />
               <DriverAnalysis
@@ -193,6 +204,15 @@ function ExecutiveCopilot() {
           key={operator.id}
           onClose={() => setWalkthroughOpen(false)}
           onNavigate={(page) => setActivePage(page)}
+        />
+      )}
+      {compassMetric && (
+        <KpiCompass
+          key={`${operator.id}-${compassMetric.id}`}
+          metric={compassMetric}
+          operator={operator}
+          onClose={() => setCompassMetric(null)}
+          onAskAbout={askAboutCompassMetric}
         />
       )}
     </div>

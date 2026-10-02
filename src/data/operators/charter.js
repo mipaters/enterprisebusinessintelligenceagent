@@ -646,6 +646,11 @@ export const charterOperator = {
   walkthroughSteps,
   architectureLayers,
   dataSources,
+  compassDimensions: {
+    region: { label: 'Region', options: ['Northeast', 'Central', 'Mountain', 'Southwest'] },
+    market: { label: 'Market', options: ['New York', 'St. Louis', 'Denver', 'Phoenix', 'Dallas'] },
+    channel: { label: 'Channel', options: ['Digital', 'Retail', 'Care'] },
+  },
   outcomes,
   marketInsights,
   aiRecommendations,

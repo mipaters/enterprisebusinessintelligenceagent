@@ -640,6 +640,11 @@ export const rogersOperator = {
   walkthroughSteps,
   architectureLayers,
   dataSources,
+  compassDimensions: {
+    region: { label: 'Region', options: ['Ontario', 'Quebec', 'Atlantic', 'West'] },
+    market: { label: 'Market', options: ['Toronto', 'Montreal', 'Ottawa', 'Calgary', 'Vancouver'] },
+    channel: { label: 'Channel', options: ['Digital', 'Retail', 'Care'] },
+  },
   outcomes,
   marketInsights,
   aiRecommendations,

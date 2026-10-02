@@ -6,12 +6,16 @@ const statusLabel = {
   attention: 'Needs attention',
 };
 
-export default function KpiCard({ metric, onAskAbout }) {
+export default function KpiCard({ metric, onAskAbout, onDrillDown }) {
   const trendSymbol = metric.trend === 'up' ? '▲' : metric.trend === 'down' ? '▼' : '▬';
   const trendClass = `trend-${metric.trend}`;
 
   return (
-    <div className={`kpi-card status-${metric.status}`}>
+    <div
+      className={`kpi-card status-${metric.status}`}
+      onDoubleClick={() => onDrillDown(metric)}
+      title="Double-click to open KPI Compass"
+    >
       <div className="kpi-card-top">
         <span className="kpi-domain">{metric.domain}</span>
         <span className={`status-pill status-pill-${metric.status}`}>{statusLabel[metric.status]}</span>
@@ -27,6 +31,9 @@ export default function KpiCard({ metric, onAskAbout }) {
       <Sparkline data={metric.sparkline} trend={metric.trend} />
       <button type="button" className="link-button" onClick={() => onAskAbout(metric)}>
         Ask about this metric →
+      </button>
+      <button type="button" className="link-button" onClick={() => onDrillDown(metric)}>
+        Open KPI Compass →
       </button>
       <p className="kpi-source" title={metric.source}>
         Source: {metric.source}
